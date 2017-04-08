@@ -1,18 +1,17 @@
-from django.conf.urls import url
+from django.conf.urls import patterns, include, url
+ 
+# Uncomment the next two lines to enable the admin:
 from django.contrib import admin
-from .views import(
-    posts_list,
-    posts_create,
-    posts_detail,
-    posts_update,
-    posts_delete,
-
+admin.autodiscover()
+ 
+urlpatterns = patterns('',
+    # Add the following line to link the root URL to the function myblog.views.index()
+    url(r'^$', 'myblog.views.index', name='index'),
+    # url(r'^myblog/', include('myblog.foo.urls')),
+ 
+    # Uncomment the admin/doc line below to enable admin documentation:
+    url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+ 
+    # Uncomment the next line to enable the admin:
+    url(r'^admin/', include(admin.site.urls)),
 )
-urlpatterns = [
-
-    url(r'^$', posts_list, name = 'list'),
-    url(r'^create/$', posts_create),
-    url(r'^(?P<id>\d+)/$', posts_detail, name='detail'),
-    url(r'^(?P<id>\d+)/update/$', posts_update, name='update'),
-    url(r'^(?P<id>\d+)/delete/$', posts_delete),
-]
