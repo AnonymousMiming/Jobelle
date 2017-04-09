@@ -1,1 +1,2 @@
-web: gunicorn WebDev.wsgi --log-file -
+web: gunicorn Jobelle.wsgi:application --log-file -
+web: python Jobelle/manage.py runserver 0.0.0.0:$PORT --noreload
